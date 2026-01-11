@@ -27,7 +27,7 @@ function __canaudua_item_host_context
 end
 
 function __canaudua_detect_distro
-    if type -q termux-setup-storage
+    if test (uname -o) = Android
         echo -n termux
         return
     end
