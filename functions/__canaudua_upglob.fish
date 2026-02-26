@@ -9,7 +9,11 @@ function __canaudua_upglob -a pattern_type
 end
 
 function __canaudua_glob -a pattern_type directory
-    set -l mtime (stat -c '%Y' $directory)
+    if test (uname -o) = 'Darwin'
+        stat -f '%m' $directory | read -l mtime
+    else
+        stat -c '%Y' $directory | read -l mtime
+    end
     set -l folder (realpath $directory | string escape --style=var)
     set -l cache_var canaudua_glob_{$folder}_{$pattern_type}
     set -l pattern_var canaudua_{$pattern_type}_glob
