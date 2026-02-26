@@ -1,5 +1,5 @@
 ruby_glob '.*(Gemfile|Rakefile|\.gemspec|\.ruby-version|\.rb)'
-python_glob '.*(requirements\.txt|pyproject\.toml|\.python-version|\.py)'
+python_glob '.*(requirements\.txt|pyproject\.toml|\.python-version|\.venv|uv\.lock|Pipfile|\.py)'
 go_glob '.*(go\.mod|go\.sum|Gopkg\.toml|glide\.yaml|\.go)'
 node_glob '.*(package\.json|package-lock\.json|yarn\.lock|\.node_version|\.nvmrc|\.js)'
 rust_glob '.*(Cargo\.toml|Cargo\.lock|\.rs)'
