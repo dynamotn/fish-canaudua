@@ -40,21 +40,21 @@ function __canaudua_item_git
     end
 
     # Get status of repo and remote repo
-    set -l info (git --no-optional-locks status --porcelain)
-    set -l staged (string match -r '^[AMDR].' $info | count)
-    set -l dirty (string match -r '^.[AMDR]' $info | count)
-    set -l untracked (string match -r '^\?\?' $info | count)
-    set -l conflicted (string match -r '^UU' $info | count)
-    set -l stashed (git stash list | count)
+    git --no-optional-locks status --porcelain | read -l info
+    string match -r '^[AMDR].' $info | count | read -l staged
+    string match -r '^.[AMDR]' $info | count | read -l dirty
+    string match -r '^\?\?' $info | count | read -l untracked
+    string match -r '^UU' $info | count | read -l conflicted
+    git stash list | count | read -l stashed
     git rev-list --count --left-right @{upstream}...HEAD 2>/dev/null | read -l -d \t upstream_behind upstream_ahead
 
     # Set background of item
     if test $dirty -ne 0 2>/dev/null
-        set -U canaudua_git_bg $canaudua_git_bg_dirty
+        set -g canaudua_git_bg $canaudua_git_bg_dirty
     else if test $staged -ne 0 2>/dev/null
-        set -U canaudua_git_bg $canaudua_git_bg_staged
+        set -g canaudua_git_bg $canaudua_git_bg_staged
     else
-        set -U canaudua_git_bg $canaudua_git_bg_clean
+        set -g canaudua_git_bg $canaudua_git_bg_clean
     end
 
     printf '%s' $current_name

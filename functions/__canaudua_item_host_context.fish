@@ -31,8 +31,8 @@ function __canaudua_detect_distro
         echo -n termux
         return
     end
-    set -l split_file (string split '=' < /etc/os-release)
-    set -l key_index (contains --index ID $split_file) || return
-    set -l value (string trim --chars='"' $split_file[(math $key_index + 1)] | string lower)
+    string split '=' < /etc/os-release | read -l split_file
+    contains --index ID $split_file | read -l key_index || return
+    string trim --chars='"' $split_file[(math $key_index + 1)] | string lower | read -l value
     echo -n $value
 end

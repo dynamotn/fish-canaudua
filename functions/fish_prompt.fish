@@ -10,7 +10,7 @@ function fish_prompt
     set -lx canaudua_last_status $status
     set -lx canaudua_last_pipestatus $pipestatus
     set -lx canaudua_duration $CMD_DURATION
-    set -lx canaudua_jobs_count (jobs --pid | count)
+    jobs --pid | count | read -lx canaudua_jobs_count
 
     if not set -e canaudua_refreshing
         fish -c "__canaudua_setup $fish_bind_mode" </dev/null &
@@ -28,11 +28,13 @@ function fish_prompt
     end
 end
 
+# @fish-lsp-disable-next-line 4004
 function __canaudua_refresh -v $canaudua_left_prompt_var -v $canaudua_right_prompt_var
     set -g canaudua_refreshing
     commandline -f repaint
 end
 
+# @fish-lsp-disable-next-line 4007 4004
 function __canaudua_exit -e fish_exit
     set -e canaudua_left_prompt_$fish_pid
     set -e canaudua_right_prompt_$fish_pid

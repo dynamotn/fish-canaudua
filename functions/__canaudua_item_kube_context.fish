@@ -1,7 +1,7 @@
 function __canaudua_item_kube_context
     type -q kubectl; or return
     if set -q canaudua_show_kube_context
-        set -l context (kubectl config current-context 2>/dev/null)
+        kubectl config current-context 2>/dev/null | read -l context
         if string match -qr 'gke_(?<project>.*)_(?<zone>.*)_(?<cluster>.*)' -- $context
             # GKE cluster
             set context $cluster
@@ -13,9 +13,9 @@ function __canaudua_item_kube_context
             set context $cluster
         end
 
-        set -l namespace (kubectl config view --minify --output 'jsonpath={..namespace}')
-        test -z $namespace; and set -l namespace default
+        kubectl config view --minify --output 'jsonpath={..namespace}' | read -l namespace
+        test -z "$namespace"; and set -l namespace default
 
-        test -z $context; or printf $canaudua_kube_icon' %s' $context' ('$namespace')'
+        test -z "$context"; or printf $canaudua_kube_icon' %s' $context' ('$namespace')'
     end
 end

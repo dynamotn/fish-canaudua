@@ -5,8 +5,8 @@ function __canaudua_side_prompt -a side
     # Loop over all items of side prompt
     for item in $$list_items_var
         # Check output of item
-        set -l output (__canaudua_item_$item)
-        test -z $output; and continue
+        set -l output "$(__canaudua_item_$item)"
+        test -z "$output"; and continue
 
         # Get background color of item
         set -l bg_color_var canaudua_"$item"_bg
