@@ -46,3 +46,7 @@ go_icon \ue627
 node_icon \ue60c
 bun_icon \ueeaf
 rust_icon \ue7a8
+vi_mode_icon_default \u2115
+vi_mode_icon_insert \U1d540
+vi_mode_icon_replace \u211d
+vi_mode_icon_visual \U1d54d
