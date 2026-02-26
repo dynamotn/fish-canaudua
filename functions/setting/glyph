@@ -24,6 +24,7 @@ time_icon \uf017' '
 duration_icon \uf252
 gcloud_icon \UF11F6
 aws_icon \UF0E0F
+host_context_icon_termux \uf17b' '
 host_context_icon_mac \uf179
 host_context_icon_bsd \uf30c' '
 host_context_icon_linux \uf17c
