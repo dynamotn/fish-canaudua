@@ -45,6 +45,8 @@ go_bg blue
 go_fg black
 node_bg blue
 node_fg black
+bun_bg blue
+bun_fg black
 rust_bg blue
 rust_fg black
 pwd_bg black
