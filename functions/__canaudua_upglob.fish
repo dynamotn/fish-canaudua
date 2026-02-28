@@ -19,8 +19,8 @@ function __canaudua_glob -a pattern_type directory
     set -l pattern_var canaudua_{$pattern_type}_glob
 
     # Search in cache before
-    test "$cache_var" = 0; and return 1
-    test "$cache_var" = "$mtime"; and return 0
+    test "$$cache_var" = 0; and return 1
+    test "$$cache_var" = "$mtime"; and return 0
 
     # Find with pattern
     test -z (
