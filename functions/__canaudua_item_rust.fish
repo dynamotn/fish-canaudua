@@ -1,5 +1,5 @@
 function __canaudua_item_rust
-    type -q rustc; or return
+    type -q rustup; or return
     __canaudua_upglob rust; or return
 
     rustup show active-toolchain | string match -qr "(?<rust_version>^[\d.]+)"
