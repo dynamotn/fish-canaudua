@@ -56,4 +56,6 @@ rust_bg blue
 rust_fg black
 java_bg blue
 java_fg black
+php_bg blue
+php_fg black
 pwd_bg black

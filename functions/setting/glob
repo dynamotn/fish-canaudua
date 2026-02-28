@@ -5,3 +5,4 @@ node_glob '.*(package\.json|package-lock\.json|yarn\.lock|\.node_version|\.nvmrc
 rust_glob '.*(Cargo\.toml|Cargo\.lock|\.rs)'
 bun_glob '.*(bun\.lock)'
 java_glob '.*(pom\.xml|build\.gradle|build\.gradle\.kts|\.java)'
+php_glob '.*(composer\.json|\.php)'
