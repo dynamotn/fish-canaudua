@@ -1,3 +1,4 @@
-kube_context_show_on_command 'kubectl|helm|kubens|kubectx|oc|istioctl|kogito|k9s|helmfile|fluxctl|stern'
-gcloud_show_on_command 'gcloud|gcs|terraform|terragrunt'
-aws_show_on_command 'aws|terraform|terragrunt'
+kube_context_show_on_command '(kubectl|helm|kubens|kubectx|oc|istioctl|kogito|k9s|helmfile|fluxctl|stern)'
+docker_context_show_on_command '(docker|docker-compose)'
+gcloud_show_on_command '(gcloud|gcs|terraform|terragrunt)'
+aws_show_on_command '(aws|terraform|terragrunt)'

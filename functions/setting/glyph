@@ -21,6 +21,7 @@ git_icon_stashed \uf0c6
 git_icon_ahead \uf47b
 git_icon_behind \uf47c
 kube_icon \UF10FE
+docker_icon \ue7b0
 status_icon_failure \u2718
 status_icon_success \u2714
 jobs_icon \u2699

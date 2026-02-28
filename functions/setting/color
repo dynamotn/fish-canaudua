@@ -17,6 +17,8 @@ vi_mode_fg_default black
 vi_mode_fg_insert black
 vi_mode_fg_replace black
 vi_mode_fg_visual black
+docker_context_bg blue
+docker_context_fg black
 kube_context_bg purple
 kube_context_fg black
 status_bg_failure red

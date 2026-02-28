@@ -12,6 +12,7 @@ function __canaudua_show_on_command
         set -l cmd (__canaudua_get_origin_command $cmd)
 
         __canaudua_check_show_on_command kube_context $cmd
+        __canaudua_check_show_on_command docker_context $cmd
         __canaudua_check_show_on_command gcloud $cmd
         __canaudua_check_show_on_command aws $cmd
     end
@@ -31,7 +32,7 @@ function __canaudua_check_show_on_command -a item cmd
     set -l show_on_command_var canaudua_"$item"_show_on_command
     test -n "$$bg_var"; or return
 
-    if string match -qr $$show_on_command_var -- $cmd
+    if string match -qr "^$$show_on_command_var\$" -- $cmd
         set -gx canaudua_show_$item
         commandline -f repaint
     else
