@@ -50,13 +50,16 @@ function __canaudua_item_git
     end
 
     # Get status of repo and remote repo
-    set -l info (git --no-optional-locks status --porcelain 2>/dev/null)
-    set -l staged (string match -r '^[AMDR].' $info | count)
-    set -l dirty (string match -r '^.[AMDR]' $info | count)
-    set -l untracked (string match -r '^\?\?' $info | count)
-    set -l conflicted (string match -r '^UU' $info | count)
-    set -l stashed (git stash list 2>/dev/null | count)
-    git rev-list --count --left-right @{upstream}...HEAD 2>/dev/null | read -l -d \t upstream_behind upstream_ahead
+    test $in_gdir = true && set -l _set_dir_opt -C $gdir/..
+    set -l info (git $_set_dir_opt --no-optional-locks status --porcelain 2>/dev/null)
+    string match -qr '(0|(?<stash>.*))\n(0|(?<conflicted>.*))\n(0|(?<staged>.*))
+(0|(?<dirty>.*))\n(0|(?<untracked>.*))(\n(0|(?<upstream_behind>.*))\t(0|(?<upstream_ahead>.*)))?' \
+        "$(git $_set_dir_opt stash list 2>/dev/null | count
+        string match -r ^UU $info | count
+        string match -r ^[ADMR] $info | count
+        string match -r ^.[ADMR] $info | count
+        string match -r '^\?\?' $info | count
+        git rev-list --count --left-right @{upstream}...HEAD 2>/dev/null)"
 
     # Set background of item
     if test -n "$operation$conflicted"
