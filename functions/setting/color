@@ -1,5 +1,7 @@
 pwd_bg black
 pwd_fg white
+character_fg_success brgreen
+character_fg_failure red
 time_bg black
 time_fg white
 git_bg_clean green

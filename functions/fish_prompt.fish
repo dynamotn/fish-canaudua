@@ -24,11 +24,28 @@ function fish_prompt
         echo -n \e\[0J
         string unescape $$canaudua_left_transient_prompt_var
     else
-        string unescape $$canaudua_left_prompt_var
+        set -l _parts $$canaudua_left_prompt_var
+        if test (count $_parts) -ge 3
+            # 2-line prompt: _parts[1]=left_line1, _parts[2]=right_line1, _parts[3]=char_line2
+            set -l _left (string unescape $_parts[1])
+            set -l _right (string unescape $_parts[2])
+            set -l _char (string unescape $_parts[3])
+            if test -n "$_right"
+                set -l _spaces (math max 0, $COLUMNS - (string length -V $_left) - (string length -V $_right))
+                echo -n $_left
+                string repeat -Nm$_spaces ' '
+                echo $_right
+            else
+                echo $_left
+            end
+            echo -n $_char
+        else
+            string unescape $_parts
+        end
     end
 end
 
-function __canaudua_refresh -v $canaudua_left_prompt_var -v $canaudua_right_prompt_var
+function __canaudua_refresh -v $canaudua_left_prompt_var -v $canaudua_right_prompt_var -v COLUMNS
     set -g canaudua_refreshing
     commandline -f repaint
 end

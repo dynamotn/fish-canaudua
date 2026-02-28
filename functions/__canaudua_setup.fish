@@ -12,8 +12,17 @@ function __canaudua_setup -a fish_bind_mode
     set -l right_prompt (__canaudua_side_prompt right)
     set -l left_transient_prompt (__canaudua_side_prompt left_transient)
     set -l right_transient_prompt (__canaudua_side_prompt right_transient)
-    set -U canaudua_left_prompt_$canaudua_pid $left_prompt' '
-    set -U canaudua_right_prompt_$canaudua_pid $right_prompt
+
+    if test "$canaudua_prompt_lines" = 2
+        set -l character_prompt (__canaudua_character_prompt)
+        # Store 3 elements: left_line1, right_line1, char_line2
+        # fish_prompt will align right_line1 to the right on line 1
+        set -U canaudua_left_prompt_$canaudua_pid $left_prompt $right_prompt $character_prompt' '
+        set -U canaudua_right_prompt_$canaudua_pid ''
+    else
+        set -U canaudua_left_prompt_$canaudua_pid $left_prompt' '
+        set -U canaudua_right_prompt_$canaudua_pid $right_prompt
+    end
     set -U canaudua_left_transient_prompt_$canaudua_pid $left_transient_prompt' '
     set -U canaudua_right_transient_prompt_$canaudua_pid $right_transient_prompt
 end
