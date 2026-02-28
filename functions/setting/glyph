@@ -1,8 +1,11 @@
-character_icon \u276f
+character_icon '\u27a3'
 left_separator_diff \ue0b0
 left_separator_same \ue0b1
 right_separator_diff \ue0b2
 right_separator_same \ue0b3
+left_top_frame \u256d\u2500
+left_bottom_frame \u2570\u2500
+prompt_center_char \u2500
 left_transient_separator_diff \ue0b0
 left_transient_separator_same \ue0b1
 right_transient_separator_diff \ue0b2

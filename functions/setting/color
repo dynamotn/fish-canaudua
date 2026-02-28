@@ -1,3 +1,4 @@
+prompt_frame_fg brblack
 pwd_bg black
 pwd_fg white
 character_fg_success brgreen

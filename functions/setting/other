@@ -1,3 +1,4 @@
 duration_threshold 2000
 duration_decimals 2
 prompt_lines 2
+prompt_has_frame true

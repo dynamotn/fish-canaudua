@@ -20,6 +20,16 @@ function fish_prompt
         set -g canaudua_last_pid $last_pid
     end
 
+    set -l offset 0
+    set -l left_top_frame ''
+    set -l left_bottom_frame ''
+    set_color $canaudua_prompt_frame_fg -b normal | read -l prompt_frame_fg
+    if test "$canaudua_prompt_has_frame" = "true"
+        set left_top_frame $prompt_frame_fg$canaudua_left_top_frame
+        set left_bottom_frame $prompt_frame_fg$canaudua_left_bottom_frame
+        set offset (string length -V $canaudua_left_top_frame)
+    end
+
     if set -q __canaudua_transient
         echo -n \e\[0J
         string unescape $$canaudua_left_transient_prompt_var
@@ -31,14 +41,14 @@ function fish_prompt
             set -l _right (string unescape $_parts[2])
             set -l _char (string unescape $_parts[3])
             if test -n "$_right"
-                set -l _spaces (math max 0, $COLUMNS - (string length -V $_left) - (string length -V $_right))
-                echo -n $_left
-                string repeat -Nm$_spaces ' '
+                set -l _spaces (math max 0, $COLUMNS - (string length -V $_left) - (string length -V $_right) - $offset)
+                echo -n $left_top_frame$_left$prompt_frame_fg
+                string repeat -Nm$_spaces $canaudua_prompt_center_char
                 echo $_right
             else
                 echo $_left
             end
-            echo -n $_char
+            echo -n $left_bottom_frame$_char
         else
             string unescape $_parts
         end
