@@ -54,4 +54,6 @@ bun_bg blue
 bun_fg black
 rust_bg blue
 rust_fg black
+java_bg blue
+java_fg black
 pwd_bg black

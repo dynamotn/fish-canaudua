@@ -1,4 +1,4 @@
-left_items vi_mode distrobox host_context pwd git direnv ruby python go rust node bun
+left_items vi_mode distrobox host_context pwd git direnv ruby python go rust node bun java
 right_items gcloud aws docker_context kube_context jobs duration status time
 left_transient_items pwd distrobox
 right_transient_items duration status time
