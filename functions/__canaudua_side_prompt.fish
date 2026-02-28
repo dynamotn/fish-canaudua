@@ -6,7 +6,7 @@ function __canaudua_side_prompt -a side
     for item in $$list_items_var
         # Check output of item
         set -l output (__canaudua_item_$item)
-        test -z $output; and continue
+        test -z "$output"; and continue
 
         # Get background color of item
         set -l bg_color_var canaudua_"$item"_bg

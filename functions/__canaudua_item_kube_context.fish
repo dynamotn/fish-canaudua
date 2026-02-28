@@ -14,8 +14,8 @@ function __canaudua_item_kube_context
         end
 
         set -l namespace (kubectl config view --minify --output 'jsonpath={..namespace}')
-        test -z $namespace; and set -l namespace default
+        test -z "$namespace"; and set -l namespace default
 
-        test -z $context; or printf $canaudua_kube_icon' %s' $context' ('$namespace')'
+        test -z "$context"; or printf $canaudua_kube_icon' %s' $context' ('$namespace')'
     end
 end

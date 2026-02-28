@@ -23,14 +23,15 @@ function __canaudua_glob -a pattern_type directory
     test "$$cache_var" = "$mtime"; and return 0
 
     # Find with pattern
-    test -z (
+    # @fish-lsp-disable 2003 3003
+    test -z "$(
     find (realpath $directory) \
       -maxdepth 1 \
       -regextype posix-extended \
       -iregex $$pattern_var \
       -type f \
       -print -quit 2>/dev/null
-    ); and set -U $cache_var 0; and return 1
+    )"; and set -U $cache_var 0; and return 1
 
     # Set cache for glob search
     set -U $cache_var $mtime

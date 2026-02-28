@@ -13,6 +13,7 @@ function __canaudua_setup -a fish_bind_mode
     set -l left_transient_prompt (__canaudua_side_prompt left_transient)
     set -l right_transient_prompt (__canaudua_side_prompt right_transient)
 
+    # @fish-lsp-disable 2003
     if test "$canaudua_prompt_lines" = 2
         set -l character_prompt (__canaudua_character_prompt)
         # Store 3 elements: left_line1, right_line1, char_line2
