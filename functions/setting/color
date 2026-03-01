@@ -33,6 +33,8 @@ gcloud_bg blue
 gcloud_fg black
 aws_bg blue
 aws_fg black
+azure_bg blue
+azure_fg black
 opentofu_bg blue
 opentofu_fg black
 terraform_bg blue

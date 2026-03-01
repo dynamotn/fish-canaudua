@@ -29,6 +29,7 @@ time_icon \uf017' '
 duration_icon \uf252
 gcloud_icon \UF11F6
 aws_icon \UF0E0F
+azure_icon \ue754
 opentofu_icon \uf1b2
 terraform_icon \ue8bd
 host_context_icon_termux \uf17b' '
