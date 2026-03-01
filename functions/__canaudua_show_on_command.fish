@@ -15,6 +15,8 @@ function __canaudua_show_on_command
         __canaudua_check_show_on_command docker_context $cmd
         __canaudua_check_show_on_command gcloud $cmd
         __canaudua_check_show_on_command aws $cmd
+        __canaudua_check_show_on_command terraform $cmd
+        __canaudua_check_show_on_command opentofu $cmd
     end
     commandline -i " "
 end

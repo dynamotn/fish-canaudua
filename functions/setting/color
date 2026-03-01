@@ -33,6 +33,10 @@ gcloud_bg blue
 gcloud_fg black
 aws_bg blue
 aws_fg black
+opentofu_bg blue
+opentofu_fg black
+terraform_bg blue
+terraform_fg black
 host_context_bg_ssh brcyan
 host_context_bg_container brgreen
 host_context_bg_root purple
