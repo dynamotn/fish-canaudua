@@ -64,4 +64,6 @@ java_bg blue
 java_fg black
 php_bg blue
 php_fg black
+zig_bg blue
+zig_fg black
 pwd_bg black
