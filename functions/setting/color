@@ -68,4 +68,6 @@ php_bg blue
 php_fg black
 zig_bg blue
 zig_fg black
+dotnet_bg blue
+dotnet_fg black
 pwd_bg black
