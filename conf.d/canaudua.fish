@@ -1,4 +1,5 @@
 function __canaudua_uninstall -e canaudua_uninstall
+    bind --user | string replace --filter --regex -- "bind (.+)( '?__canaudua.*)" 'bind -e $1' | source
     set -n | string replace -fr '(^canaudua.*)' 'set -e $1' | source
     functions -e (functions -a | string match -er '^__canaudua_')
     source (functions --details fish_prompt)
