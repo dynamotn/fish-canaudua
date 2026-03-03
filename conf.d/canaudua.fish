@@ -13,10 +13,14 @@ end
 function __canaudua_binding
     bind ' ' __canaudua_show_on_command
     bind -M insert ' ' __canaudua_show_on_command
-    bind \r __canaudua_enter_transient
-    bind -M insert \r __canaudua_enter_transient
-    bind \n __canaudua_enter_transient
-    bind -M insert \n __canaudua_enter_transient
+    if __canaudua_semver_compare $FISH_VERSION 4.2.0
+        set -g fish_transient_prompt 1
+    else
+        bind \r __canaudua_enter_transient
+        bind -M insert \r __canaudua_enter_transient
+        bind \n __canaudua_enter_transient
+        bind -M insert \n __canaudua_enter_transient
+    end
 end
 
 __canaudua_binding

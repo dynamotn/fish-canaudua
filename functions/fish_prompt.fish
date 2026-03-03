@@ -30,7 +30,7 @@ function fish_prompt
         set offset (string length -V $canaudua_left_top_frame)
     end
 
-    if set -q __canaudua_transient
+    if set -q __canaudua_transient; or contains -- --final-rendering $argv
         echo -n \e\[0J
         string unescape $$canaudua_left_transient_prompt_var
     else
