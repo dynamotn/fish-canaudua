@@ -10,13 +10,13 @@ _canaudua_ is a theme for fish prompt. _canaudua_ is `Cá nấu dưa [kaː˧˥ n
 
 Install by following command:
 ```fish
-fisher install dynamo-make-color/fish-canaudua
+fisher install dynamotn/fish-canaudua
 ```
 
 ## Features
 
 - **Async prompt rendering** — prompt segments are computed in a background subprocess so the shell stays responsive.
-- **Transient prompt** — collapses previous prompts to a minimal view after a command is executed, keeping the scrollback clean.
+- **Transient prompt** — collapses previous prompts to a minimal view after a command is executed, keeping the scrollback clean (native from Fish 4.2.0, but you can use it in older versions with this plugin).
 - **Two-line layout** — optional dual-line prompt that places info items on line 1 (left + right-aligned) and the input cursor on line 2.
 - **Optional frame/border** — decorative top/bottom frame around the prompt that can be toggled.
 - **Powerline-style segments** — adjacent segments share smooth separators; colors transition automatically between same-colored and different-colored segments.
