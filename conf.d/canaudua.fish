@@ -24,3 +24,27 @@ function __canaudua_binding
 end
 
 __canaudua_binding
+
+# Migration: earlier versions cached glob lookups in per-directory universal
+# variables (canaudua_glob_<path>_<type>) that were never removed, so
+# ~/.config/fish/fish_variables grew without bound over time. Glob checks are
+# no longer cached this way, so purge any leftovers created by older versions
+# of this plugin.
+set -l _canaudua_stale_glob_vars (set -n | string match -r '^canaudua_glob_.*')
+if set -q _canaudua_stale_glob_vars[1]
+    for var in $_canaudua_stale_glob_vars
+        set -e $var
+    end
+end
+
+# The async prompt renderer stores its output in universal variables scoped
+# to the shell's PID (canaudua_{left,right}_{,transient_}prompt_<pid>), same
+# as tide does. They are normally removed by __canaudua_exit on a clean
+# `fish_exit`, but that handler never runs if the shell dies abnormally
+# (killed, crashed, terminal force-closed, power loss, etc.), so entries for
+# dead PIDs can accumulate in fish_variables forever. Sweep them on every new
+# shell startup, keeping only vars whose PID still maps to a live process.
+for var in (set -n | string match -r '^canaudua_(?:left|right)_(?:transient_)?prompt_[0-9]+$')
+    string match -qr '_(?<pid>[0-9]+)$' -- $var
+    kill -0 $pid 2>/dev/null; or set -e $var
+end

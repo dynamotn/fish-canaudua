@@ -9,33 +9,19 @@ function __canaudua_upglob -a pattern_type
 end
 
 function __canaudua_glob -a pattern_type directory
-    stat --version >/dev/null 2>&1
-    if test $status -eq 0
-        stat -c '%Y' $directory | read -l mtime
-    else
-        stat -f '%m' $directory | read -l mtime
-    end
-    set -l folder (realpath $directory | string escape --style=var)
-    set -l cache_var canaudua_glob_{$folder}_{$pattern_type}
     set -l pattern_var canaudua_{$pattern_type}_glob
 
-    # Search in cache before
-    test "$cache_var" = 0; and return 1
-    test "$cache_var" = "$mtime"; and return 0
-
-    # Find with pattern
+    # Check the directory for a matching file on every call instead of caching
+    # results in universal variables: a universal variable would be created
+    # per directory/pattern pair, never removed, and grow ~/.config/fish/fish_variables
+    # without bound.
     # @fish-lsp-disable 2003 3003
-    test -z "$(
+    test -n "$(
     find (realpath $directory) \
       -maxdepth 1 \
       -regextype posix-extended \
       -iregex $$pattern_var \
       -type f \
       -print -quit 2>/dev/null
-    )"; and set -U $cache_var 0; and return 1
-
-    # Set cache for glob search
-    set -U $cache_var $mtime
-
-    return 0
+    )"
 end

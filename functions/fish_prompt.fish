@@ -12,7 +12,7 @@ function fish_prompt
     set -lx canaudua_duration $CMD_DURATION
     set -lx canaudua_jobs_count (jobs --pid | count)
 
-    if not set -e canaudua_refreshing
+    if not set -e __canaudua_refreshing
         fish -c "__canaudua_setup $fish_bind_mode" </dev/null &
         builtin disown
 
@@ -63,4 +63,6 @@ end
 function __canaudua_exit -e fish_exit
     set -e canaudua_left_prompt_$fish_pid
     set -e canaudua_right_prompt_$fish_pid
+    set -e canaudua_left_transient_prompt_$fish_pid
+    set -e canaudua_right_transient_prompt_$fish_pid
 end
