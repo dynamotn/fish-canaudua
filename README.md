@@ -51,3 +51,4 @@ Cloud and infrastructure items (`kube_context`, `docker_context`, `gcloud`, `aws
 ### Customization
 
 All items, colors, glyphs, per-item command triggers, and glob patterns are stored as Fish universal variables and can be changed without restarting the shell.
+The defaults are applied only when the values shipped in `functions/setting/` change, so a `set -U canaudua_*` of your own survives until the next plugin update overwrites that setting.
