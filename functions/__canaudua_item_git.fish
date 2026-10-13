@@ -51,7 +51,7 @@ function __canaudua_item_git
 
     # Get status of repo and remote repo
     test $in_gdir = true && set -l _set_dir_opt -C $gdir/..
-    set -l info (git $_set_dir_opt --no-optional-locks status --porcelain 2>/dev/null)
+    set -l info (git $_set_dir_opt --no-optional-locks status --porcelain --ignore-submodules=dirty 2>/dev/null)
     string match -qr '(0|(?<stashed>.*))\n(0|(?<conflicted>.*))\n(0|(?<staged>.*))
 (0|(?<dirty>.*))\n(0|(?<untracked>.*))(\n(0|(?<upstream_behind>.*))\t(0|(?<upstream_ahead>.*)))?' \
         "$(git $_set_dir_opt stash list 2>/dev/null | count
